@@ -166,3 +166,32 @@ var mergeSort = function(array, p, r) {
         merge(array, p, q, r);
     }
 };
+
+/*=================
+Quicksort algorithm
+==================*/
+var swap = function(array, firstIndex, secondIndex) {
+    var temp = array[firstIndex];
+    array[firstIndex] = array[secondIndex];
+    array[secondIndex] = temp;
+};
+
+var partition = function(array, p, r) {
+    var q = p;
+    for (var j = p; j < r; j ++) {
+        if (array[j] <= array[r]) {
+            swap(array, j, q);
+            q++;
+        }
+    }
+    swap(array, r, q);
+    return q;
+};
+
+var quickSort = function(array, p, r) {
+    if (r - p + 1 > 1) {
+        var q = partition(array, p, r);
+        quickSort(array, p, q - 1);
+        quickSort(array, q + 1, r);
+    }
+};
